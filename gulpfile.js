@@ -51,6 +51,9 @@ gulp.task('copy', function () {
 
   gulp.src('src/index.html')
     .pipe(gulp.dest('dist'));
+  
+  gulp.src('libs/comscore/streamsense.min.js')
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('qunit', function () {
