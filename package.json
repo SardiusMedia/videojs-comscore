@@ -10,14 +10,15 @@
     "node": ">= 0.10.26"
   },
   "devDependencies": {
-    "lodash": "^2.4.1",
-    "sinon": "^1.9.0",
+    "connect": "^2.14.2",
     "gulp": "^3.5.5",
     "gulp-coffee": "^1.4.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-qunit": "^0.3.0",
+    "gulp-rename": "^1.2.2",
     "gulp-uglify": "^0.2.1",
-    "gulp-rename": "^1.2.0",
-    "connect": "^2.14.2",
-    "gulp-qunit": "^0.3.0"
+    "lodash": "^2.4.1",
+    "sinon": "^1.9.0"
   },
   "license": "MPL"
 }

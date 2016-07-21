@@ -3,12 +3,14 @@ var _ = require('lodash'),
   coffee = require('gulp-coffee'),
   uglify = require('gulp-uglify'),
   rename = require('gulp-rename'),
+  concat = require('gulp-concat'),
   http = require('http'),
   connect = require('connect'),
   qunit = require('gulp-qunit'),
   paths = {
     scripts: ['src/**/*.coffee'],
-    compiled: ['src/**/*.js'],
+    compiled: ['dist/src/**/*.js'],
+    concat: ['libs/comscore/*.js', 'src/**/*.js'],
     tests: ['tests/**/*.coffee'],
     qunitHtml: ['tests/index.html'],
     demo: ['demo/*.html']
@@ -22,19 +24,10 @@ function create_static_server () {
   console.log('server running on localhost:3000');
 }
 
-//compiles coffee script files
-gulp.task('compile', function () {
-  gulp.src(paths.scripts)
-    .pipe(coffee())
-    .pipe(gulp.dest('src'));
-
-  gulp.on('error', function () {
-    console.log('error');
-  });
-
-  gulp.src(paths.tests)
-    .pipe(coffee())
-    .pipe(gulp.dest('tests'));
+gulp.task('concat', function() {
+    gulp.src(paths.concat)
+        .pipe(concat('videojs.comscore.js'))
+        .pipe(gulp.dest('dist/src'));
 });
 
 // uglify (aka minify)
@@ -51,7 +44,7 @@ gulp.task('copy', function () {
 
   gulp.src('src/index.html')
     .pipe(gulp.dest('dist'));
-  
+
   gulp.src('libs/comscore/streamsense.min.js')
     .pipe(gulp.dest('dist'));
 });
@@ -70,7 +63,7 @@ gulp.task('watch', function () {
 gulp.task('serve', create_static_server);
 
 // builds everything to the `dist` directory
-gulp.task('build', ['compile', 'copy', 'compress']);
+gulp.task('build', ['concat', 'compress']);
 
 // does a build and runs the qunit tests
 gulp.task('test', ['build', 'qunit']);
