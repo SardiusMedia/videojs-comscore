@@ -311,6 +311,8 @@
         currentClip.url(player.currentSrc());
         currentClip.duration(player.duration(), true);
         tracker.getClip().setLabel( "ns_st_cu", player.currentSrc() );
+        var playbackType = (player.isAudio) ? 'audio':'video';
+        tracker.getClip().setLabel( "ns_st_ty", playbackType );
         tracker.getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) )
         return tracker.setClip(currentClip);
       };
