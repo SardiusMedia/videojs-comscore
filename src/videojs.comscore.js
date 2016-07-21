@@ -292,6 +292,7 @@
             return clip;
           }
         }
+        return clips[0];
       };
       getCurrentClip = function() {
         return getClipByUrl(player.currentSrc());
@@ -309,6 +310,8 @@
         currentClip = getCurrentClip();
         currentClip.url(player.currentSrc());
         currentClip.duration(player.duration(), true);
+        tracker.getClip().setLabel( "ns_st_cu", player.currentSrc() );
+        tracker.getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) )
         return tracker.setClip(currentClip);
       };
       checkIfStalled = function() {
@@ -341,9 +344,10 @@
       };
       progress = function() {
         checkIfStalled();
+        updateLoadedClip();
         return currentPosition = getCurrentTime();
       };
-      player.on('durationchange', function() {
+      player.on('timeupdate', function() {
         return updateLoadedClip();
       });
       player.on('play', function() {
