@@ -313,13 +313,12 @@
         tracker.getClip().setLabel( "ns_st_cu", player.currentSrc() );
 
         var playbackType;
-        playbackType = (player.isAudio)? 'audio':'video';
-        tracker.getClip().setLabel( "ns_st_ty", playbackType );
+        playbackType = (player.isAudio_)? 'audio':'video';
+        currentClip.ns_st_ty = playbackType;
 
         tracker.getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) );
 
 		var playerSize = player.videoWidth() + 'x' + player.videoHeight();
-		console.log(player, playerSize);
 		tracker.getClip().setLabel( "ns_st_cs", playerSize , true);
 
         return tracker.setClip(currentClip);
