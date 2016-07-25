@@ -310,16 +310,16 @@
         currentClip = getCurrentClip();
         currentClip.url(player.currentSrc());
         currentClip.duration(player.duration(), true);
-        tracker.getClip().setLabel( "ns_st_cu", player.currentSrc() );
+        tracker.getPlaylist().getClip().setLabel( "ns_st_cu", player.currentSrc() );
 
         var playbackType;
         playbackType = (player.isAudio)? 'audio':'video';
-        tracker.getClip().setLabel( "ns_st_ty", playbackType );
+        tracker.getPlaylist().getClip().setLabel( "ns_st_ty", playbackType );
 
-        tracker.getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) );
+        tracker.getPlaylist().getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) );
 
 		var playerSize = player.videoWidth() + 'x' + player.videoHeight();
-		tracker.getClip().setLabel( "ns_st_cs", playerSize , true);
+		tracker.getPlaylist().getClip().setLabel( "ns_st_cs", playerSize , true);
 
         return tracker.setClip(currentClip);
       };
