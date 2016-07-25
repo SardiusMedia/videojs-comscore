@@ -317,8 +317,8 @@
         tracker.getClip().setLabel( "ns_st_ty", playbackType );
 
         tracker.getClip().setLabel( "ns_st_cl", currentClip.duration(player.duration(), true) );
-
-		var playerSize = player.videoWidth() + 'x' + player.videoHeight();
+        console.log(player,player.self.videoWidth() + 'x' + player.self.videoHeight());
+		var playerSize = player.self.videoWidth() + 'x' + player.self.videoHeight();
 		tracker.getClip().setLabel( "ns_st_cs", playerSize , true);
 
         return tracker.setClip(currentClip);
